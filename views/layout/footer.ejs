@@ -1,0 +1,159 @@
+    <!-- scripts -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <!-- bootstrap -->
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <!-- slick slider -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script>
+    <!-- custom -->
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $(".az-sale-slider").slick({
+          dots: false,
+          autoplay: true,
+          infinite: true,
+          prevArrow: $(".az-slick-prev"),
+          nextArrow: $(".az-slick-next"),
+          speed: 250,
+          slidesToShow: 5,
+          slidesToScroll: 2,
+          responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 2,
+                infinite: true,
+              },
+            },
+            {
+              breakpoint: 600,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+              },
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+              },
+            },
+          ],
+        });
+
+        $(".az-nav-menu").click((e) => {
+          $(".az-nav-container").show(2000);
+        });
+        $(".az-nav-close").click((e) => {
+          $(".az-nav-container").hide(1000);
+        });
+        $(".az-nav-container").click((e) => {
+          console.log(e.target.className);
+          if (e.target.className === "az-nav-container") {
+            $(".az-nav-container").hide(1000);
+          }
+        });
+        $(".az-nav-search").click((e) => {
+          $(".az-nav-mobile-search").addClass("show");
+        });
+        $(".az-icon-back").click((e) => {
+          $(".az-nav-mobile-search").removeClass("show");
+        });
+
+        $(".az-cart").click((e) => {
+          $(".az-cart-container").addClass("show");
+        });
+
+        $(".az-cart-close-icon").click((e) => {
+          $(".az-cart-container").removeClass("show");
+        });
+        $(".az-cart-container").click((e) => {
+          if (e.target.classList.contains("az-cart-container")) {
+            $(".az-cart-container").removeClass("show");
+          }
+        });
+        $(".az-nav-user").click((e) => {
+          $(".az-user-container").toggle(1000);
+        });
+      });
+    </script>
+     <% if (typeof route !== 'undefined' && route==='singleproduct') { %>
+      <script>
+        $(document).ready(function() {
+          // slider
+          $('.slider-for').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            prevArrow: $(".az-prod-prev"),
+            nextArrow: $(".az-prod-next"),
+            arrows: true,
+            fade: true,
+            asNavFor: '.slider-nav'
+          });
+          $('.slider-nav').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            asNavFor: '.slider-for',
+            arrows:false,
+            dots: false,
+            centerMode: true,
+            focusOnSelect: true
+          });
+
+          // change variant
+          let variantSelected = document.querySelector('.az-product-variant');
+          let variants = $('.az-prod-variant').toArray();
+          variants.forEach(variant => {
+            variant.addEventListener('click', (e) =>{
+              variantSelected.innerText = variant.title;
+              let imgSrc = variant.children[0].getAttribute('src');
+              variantSelected.setAttribute('data-img',imgSrc);
+            })
+          })
+
+          // change size
+          let sizeSelected = document.querySelector('.az-product-size-main');
+          let sizes = $('.az-prod-size').toArray();
+          sizes.forEach(size => {
+            size.addEventListener('click', (e) =>{
+              sizeSelected.innerText = size.innerText;
+            })
+          })
+        })
+      </script>
+    <% } %>
+    <!-- cart js -->
+    <% if (typeof route !== 'undefined' && route!=='order') { %>
+    <script src="/javascripts/cart.js"></script>
+    <% } %> 
+
+    <%#  messenger chat plugin %> 
+        <div id="fb-root"></div>
+        <script>
+          window.fbAsyncInit = function() {FB.init({xfbml : true,version : 'v9.0'});};
+          (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        </script>
+        <div class="fb-customerchat" attribution="setup_tool" page_id="102256241672581"
+          theme_color="#0A7CFF" logged_in_greeting="Welcome! How can we help you?" logged_out_greeting="Hi! How can we help you?">
+        </div>
+  </body>
+</html>

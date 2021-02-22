@@ -1,0 +1,224 @@
+#single-product {
+  margin-top: 92px;
+  position: relative;
+}
+
+.az-product-top {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.az-breadcrumb {
+  flex-grow: 2;
+  margin: 1rem;
+}
+
+.az-breadcrumb .breadcrumb {
+  margin-bottom: 0;
+  padding: 6px 0.5rem;
+  background-color: var(--az-secondary-lite);
+}
+
+.az-breadcrumb .breadcrumb a {
+  color: var(--az-secondary-dark);
+  font-size: 15px;
+}
+
+.breadcrumb-item::after {
+  content: ">" !important;
+  padding-left: 0.5rem;
+}
+.breadcrumb-item::before {
+  content: "" !important;
+}
+.breadcrumb-item.active::after {
+  content: "" !important;
+}
+
+/* slider */
+.az-product-image-slider {
+  padding: 1rem;
+}
+
+.az-product-image {
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  padding: 5px;
+  background-color: var(--az-primary-lite);
+  box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.3);
+}
+
+.az-pd-img-main {
+  height: 380px;
+}
+
+.az-prod-prev {
+  left: 5%;
+}
+.az-prod-next {
+  right: 5%;
+}
+
+.az-product-images {
+  margin-top: 1rem;
+}
+
+/* slider bottom */
+.az-pd-slider-img {
+  cursor: pointer;
+  padding: 2px 4px;
+  margin: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+
+/* product details */
+.az-product-details {
+  padding: 1rem;
+  background-color: var(--az-secondary-lite);
+  color: var(--az-secondary-dark);
+}
+
+.az-product-details p {
+  margin: 0;
+}
+
+.az-product-title {
+  font-size: 1.25rem;
+  font-family: "Kreon", sans-serif;
+}
+
+.az-product-price {
+  font-size: 1.25rem;
+}
+
+.az-product-price-original {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.az-product-price-sale {
+  color: var(--az-secondary-red);
+}
+
+.az-product-variants li,
+.az-product-sizes li {
+  padding: 0.4rem 0.75rem;
+  cursor: pointer;
+}
+
+.az-product-variants li:hover,
+.az-product-sizes li:hover {
+  border: 1px solid var(--az-secondary-red);
+  background-color: var(--az-secondary-lite);
+}
+
+.az-product-variants li img {
+  width: 40px;
+}
+
+.az-product-price-original {
+  text-decoration: line-through;
+}
+
+#az-shipping {
+  box-shadow: 1px -2px 4px inset rgba(0, 0, 0, 0.3);
+}
+
+/* product recomended */
+.az-product-recommended {
+  background-color: var(--az-primary-lite);
+  padding: 0.5rem;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.az-product-recommended p {
+  font-size: 14px;
+}
+
+.az-prod-recomend {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.az-prod-recomend a {
+  text-decoration: none;
+}
+
+.az-prod-recomend img {
+  height: 100px;
+  border-radius: 3px;
+  border: 1px solid #00000023;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+}
+
+.az-prod-recomend p {
+  margin-top: 0.5rem;
+  color: var(--az-secondary-red);
+}
+
+.az-prod-recomend:hover img {
+  transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
+}
+
+/* tablets */
+@media only screen and (max-width: 768px) {
+  #single-product {
+    margin-top: 60px !important;
+  }
+  .az-product-top {
+    width: 100% !important;
+  }
+
+  .az-pd-img-main {
+    top: -185px !important;
+  }
+  .slick-arrow {
+    top: 35% !important;
+  }
+  .az-product-recommended {
+    margin: 1rem 0.5rem;
+    padding: 0.5rem 1rem;
+  }
+  .az-product-recommended p {
+    font-size: 1.25rem;
+    text-align: center;
+    margin: 0;
+  }
+  .az-prod-recommends {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+/* mobile phones */
+@media only screen and (max-width: 576px) {
+  .az-product-top {
+    display: none;
+  }
+
+  #az-quantity-field {
+    width: 60px;
+  }
+}

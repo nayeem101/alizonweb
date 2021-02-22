@@ -1,0 +1,30 @@
+<% for( let i=0; i<product.length; i++ ) { %>
+  <div class="<%= i === 5 ? 'az-product-card d-lg-none':'az-product-card' %>">
+    <a href="/products/<%= product[i].productId %>">
+      <img
+        src="<%= product[i].images[0] %> "
+        alt="<%= product[i].title.substring(0,20) -%>..."
+        class="img-fluid az-product-img"
+        loading="lazy"
+      />
+    </a>
+    <div class="az-product-info">
+      <a
+        href="/products/<%= product[i].productId %>"
+        class="az-product-title text-wrap"
+        title="<%= product[i].title %>"
+        ><%= product[i].title.substring(0,32) -%></a
+      >
+      <p class="az-product-price">
+        $<%= product[i].salePrice.min %>
+        <span class="az-product-price-org"
+          >$<%= product[i].originalPrice.min %></span
+        >
+      </p>
+      <p class="az-product-rating">
+        <i class="fa fa-star"></i> <span>(<%= product[i].orders %> sold)</span>
+      </p>
+    </div>
+  </div>
+  <% } %></product.length;
+>

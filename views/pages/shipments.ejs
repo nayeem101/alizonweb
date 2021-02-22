@@ -1,0 +1,185 @@
+<!-- header -->
+<%- include('../layout/header',{route:'shipments'}) %>
+<!-- navbar -->
+<%- include('../partials/navbar') %>
+<!-- nav bottom -->
+<%- include('../partials/navbottom') -%>
+<!-- main content -->
+<main class="az-mt">
+  <div class="container py-3 px-4">
+    <h4 class="az-section-title">Bought a product? We can ship for you</h4>
+    <span class="az-hr"></span>
+    <h4 class="az-section-subtitle">
+      If your products are ready to be shipped. Enjoy hastle free shipping at
+      your doorstep.
+    </h4>
+
+    <div class="az-shadow az-ship-form">
+      <%- include('../partials/message') -%>
+      <form action="/ship-for-me" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="az-ship-me-link">Product Link</label>
+          <input
+            type="text"
+            name="prod_link"
+            class="form-control"
+            value="<%= typeof prod_link !== 'undefined' ? prod_link : ''%>"
+            id="az-ship-me-link"
+            placeholder="enter product link"
+          />
+        </div>
+        <div class="form-group">
+          <label for="az-ship-me-title">Product Title<span>*</span></label>
+          <input
+            type="text"
+            name="prod_title"
+            class="form-control"
+            id="az-ship-me-title"
+            value="<%= typeof prod_title !== 'undefined' ? prod_title : ''%>"
+            placeholder="enter product title"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="az-ship-me-categories">Categories<span>*</span></label>
+          <select
+            class="form-control"
+            name="prod_category"
+            id="az-ship-me-categories"
+            value="<%= typeof prod_category !== 'undefined' ? prod_category : ''%>"
+            required
+          >
+            <option selected>Select Category</option>
+            <option>Shirt</option>
+            <option>Pant</option>
+            <option>Laptop</option>
+            <option>Dress</option>
+            <option>Shoe</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="az-ship-me-desc">Description<span>*</span></label>
+          <textarea
+            class="form-control"
+            name="prod_desc"
+            id="az-ship-me-desc"
+            value="<%= typeof prod_desc !== 'undefined' ? prod_desc : ''%>"
+            required
+            rows="3"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="az-prod-image">Upload product image<span>*</span></label>
+          <input
+            type="file"
+            name="prod_image"
+            class="form-control-file"
+            id="az-prod-image"
+            required
+            multiple
+          />
+        </div>
+        <div class="form-row">
+          <div class="col">
+            <label for="az-prod-price">Price<span>*</span></label>
+            <input
+              type="number"
+              name="prod_price"
+              class="form-control"
+              placeholder="price"
+              id="az-prod-price"
+              value="<%= typeof prod_price !== 'undefined' ? prod_price : ''%>"
+              required
+            />
+          </div>
+          <div class="col">
+            <label for="az-prod-quantity">Quantity<span>*</span></label>
+            <input
+              type="number"
+              name="prod_quantity"
+              class="form-control"
+              placeholder="enter quantity"
+              id="az-prod-quantity"
+              required
+            />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col">
+            <label for="az-prod-price">Ship to<span>*</span></label>
+            <input
+              type="date"
+              name="prod_ship_to"
+              class="form-control"
+              id="az-prod-ship-to"
+              value="<%= typeof prod_ship_to !== 'undefined' ? prod_ship_to : ''%>"
+              required
+            />
+          </div>
+          <div class="col">
+            <label for="az-prod-quantity">Valid to</label>
+            <input
+              type="date"
+              name="prod_ship_valid"
+              class="form-control"
+              id="az-prod-valid-to"
+              value="<%= typeof prod_ship_valid !== 'undefined' ? prod_ship_valid : ''%>"
+              required
+            />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col">
+            <label for="az-prod-weight">Weight (kg)<span>*</span></label>
+            <input
+              type="number"
+              name="prod_weight"
+              max="100"
+              min="1"
+              class="form-control"
+              placeholder="enter weight"
+              id="az-prod-weight"
+              value="<%= typeof prod_weight !== 'undefined' ? prod_weight : ''%>"
+              required
+            />
+          </div>
+          <div class="col">
+            <label for="az-prod-origin">Origin<span>*</span></label>
+            <select
+              class="form-control"
+              name="prod_origin"
+              id="az-prod-origin"
+              value="<%= typeof prod_origin !== 'undefined' ? prod_origin : ''%>"
+              required
+            >
+              <option selected>Select Origin</option>
+              <option>China</option>
+            </select>
+          </div>
+          <div class="col">
+            <label for="az-prod-shipping">Shipping type<span>*</span></label>
+            <select
+              class="form-control"
+              name="prod_shipping"
+              id="az-prod-shipping"
+              value="<%= typeof prod_shipping!== 'undefined' ? prod_shipping : ''%>"
+              required
+            >
+              <option selected>Select shipping</option>
+              <option>Air</option>
+              <option>Ship</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn az-btn-primary btn-block mt-3">
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</main>
+<br />
+<!-- footer -->
+<%- include('../partials/footer') -%>
+<!-- footer -->
+<%- include('../layout/footer',{route:'shipments'}) %>

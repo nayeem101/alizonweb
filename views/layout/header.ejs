@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= typeof title !== 'undefined' ? title : 'Alizon' %></title>
+    <link rel="shortcut icon" href="/images/logo2.png" type="image/png" />
+    <link rel="icon" href="/images/logo2.png" type="image/png" />
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- slick slider -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <!-- custom css -->
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <% if (typeof route !== 'undefined' && route==='singleproduct') { %>
+      <link rel="stylesheet" href="/stylesheets/single-product.css" />
+    <% } %>
+    <% if (typeof route !== 'undefined' && route==='order') { %>
+      <link rel="stylesheet" href="/stylesheets/order.css" />
+    <% } %>
+    <% if (typeof route !== 'undefined' && route==='shipments') { %>
+      <link rel="stylesheet" href="/stylesheets/ship-for-me.css" />
+    <% } %>
+  </head>
+  <body>

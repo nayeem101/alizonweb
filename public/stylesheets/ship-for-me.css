@@ -1,0 +1,41 @@
+.az-ship-form {
+  padding: 1.5rem;
+  margin: 0 auto;
+  max-width: 720px;
+  background-color: var(--az-secondary-lite);
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+
+.az-ship-form form label span {
+  color: var(--az-primary-red);
+}
+
+/* user view */
+.az-user-shipments {
+  padding: 0.5rem;
+}
+
+.az-ship-item {
+  font-family: "Open sans", sans-serif !important;
+}
+
+.az-ship-card img {
+  max-width: 120px;
+  margin-right: 6px;
+}
+.az-ship-card h5 {
+  margin-bottom: 4px;
+  /* border-bottom: 1px solid #14253349; */
+}
+.az-ship-card p {
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+.az-ship-card span {
+  font-weight: 600;
+  color: var(--az-primary-red);
+}

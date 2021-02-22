@@ -1,0 +1,38 @@
+/* utils */
+
+/* order message */
+.az-order-message {
+  text-align: center;
+  color: red;
+}
+.az-order-message.hide {
+  display: none;
+}
+
+.drop-menu-action {
+  min-width: 7rem !important;
+}
+
+.drop-menu-action a {
+  padding: 0.25rem 1rem;
+}
+
+.drop-menu-action a:hover {
+  cursor: pointer;
+  color: var(--az-secondary-dark) !important;
+  background-color: var(--az-tertiary-lite);
+}
+
+/* pay */
+.az-pay-modals {
+  padding: 0.5rem 1rem;
+  margin: 0 auto;
+  text-align: center;
+}
+.az-pay-modals a {
+  margin: 0 0.5rem;
+}
+
+.az-pay-img {
+  width: 150px;
+}

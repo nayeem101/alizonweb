@@ -1,0 +1,49 @@
+<!-- header -->
+<%- include('../layout/header',{route:'login'}) %>
+<!-- main content -->
+<div class="container">
+  <div class="nav justify-content-center mt-4">
+    <a href="/" class="link">
+      <img
+        class="img-fluid"
+        style="max-width: 120px"
+        src="/images/logo.png"
+        alt="Alizon"
+      />
+    </a>
+  </div>
+  <div class="row">
+    <div class="w-50 mx-auto border rounded p-4 mt-2">
+      <%- include("../partials/message") -%>
+      <form action="/user/login" method="POST">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            id="email"
+            placeholder="abc123@xyz.com"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            id="password"
+            required
+          />
+        </div>
+        <button class="btn az-btn-primary w-100" type="submit">Login</button>
+      </form>
+      <p class="lead mt-4">
+        Don't have an account? <a href="/user/register">Register</a>
+      </p>
+    </div>
+  </div>
+</div>
+<!-- footer -->
+<%- include('../layout/footer',{route:'login'}) %>

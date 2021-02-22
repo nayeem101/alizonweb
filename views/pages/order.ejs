@@ -1,0 +1,290 @@
+<!-- header -->
+<%- include('../layout/header',{route:'order'}) %>
+<!-- navbar -->
+<%- include('../partials/navbar') %>
+<!-- nav bottom -->
+<%- include('../partials/navbottom') -%>
+<!-- main -->
+<div class="container az-mt">
+  <div class="row">
+    <div class="col-12 az-order-address">
+      <div class="card card-body">
+        <h4 class="az-section-title">Shipping Address</h4>
+        <p class="az-section-subtitle">
+          Your products will be shipped to this address
+        </p>
+        <h3 class="az-order-message hide"></h3>
+        <div class="row">
+          <div class="col-md-3">
+            <label for="az-add-vill">District</label>
+
+            <select class="form-control" id="az-add-dist">
+              <option
+                selected
+                value="<%= typeof address !== undefined ? address.district : '' %>"
+              >
+            <%= typeof address !== undefined ? address.district : 'Select District' %>
+              </option>
+              <option>Comilla</option>
+              <option>Chandpur</option>
+              <option>Dhaka</option>
+              <option>Chattogram</option>
+              <option>Sylhet</option>
+              <option>Rajshahi</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label for="az-add-upazilla">Upazilla</label>
+            <% if (typeof address !== undefined || address ==='') { %>  
+            <select class="form-control" id="az-add-upazilla">
+              <option selected value="<%= address.upazilla %>">
+                <%= address.upazilla%>
+              </option>
+            </select>
+            <% }else{ %>
+            <select class="form-control" id="az-add-upazilla">
+              <option selected value="">Select District first</option>
+            </select>
+            <% } %>
+          </div>
+          <div class="col-md-3">
+            <label for="az-add-vill">Area</label>
+            <% if (typeof address !== undefined) { %>
+            <select class="form-control" id="az-add-vill">
+              <option selected value="<%= address.area %>">
+                <%= address.area%>
+              </option>
+            </select>
+            <% }else {%>
+            <select class="form-control" id="az-add-vill">
+              <option selected value="">Select Upazilla first</option>
+            </select>
+            <% } %>
+          </div>
+          <div class="col-md-3">
+            <label for="az-add-zip">ZIP/Postal Code</label>
+            <% if (typeof address !== undefined) { %>
+            <input
+              type="text"
+              id="az-add-zip"
+              class="form-control"
+              value="<%= address.zipcode %>"
+              placeholder="enter zip/postal code"
+            />
+            <% }else {%>
+            <input
+              type="text"
+              id="az-add-zip"
+              class="form-control"
+              placeholder="enter zip/postal code"
+            />
+            <% } %>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-md-6">
+            <label for="az-add-street">Street Address</label>
+            <% if (typeof address !== undefined) { %>
+            <input
+              type="text"
+              id="az-add-street"
+              class="form-control"
+              value="<%= address.street %>"
+              placeholder="enter zip/postal code"
+            />
+            <% }else {%>
+            <input
+              type="text"
+              id="az-add-street"
+              class="form-control"
+              placeholder="house no:#123, street#12, xyz road"
+            />
+            <% } %>
+          </div>
+          <div class="col-md-6">
+            <label for="az-add-mobile">Contact Number (for delivery)</label>
+            <% if (typeof address !== undefined) { %>
+            <input
+              type="text"
+              id="az-add-mobile"
+              class="form-control"
+              value="<%= address.contactNum %>"
+              placeholder="enter your contact number"
+            />
+            <% }else {%>
+            <input
+              type="text"
+              id="az-add-mobile"
+              class="form-control"
+              placeholder="enter your contact number"
+            />
+            <% } %>
+          </div>
+        </div>
+        <div class="custom-control custom-checkbox text-center mt-2">
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            id="az-check-default-address"
+          />
+          <label class="custom-control-label" for="az-check-default-address"
+            >Set as my default shipping address
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 az-order-wrapper mt-3">
+      <h4 class="az-section-title">Your Products</h4>
+      <span class="az-hr"></span>
+      <h3 class="az-order-message hide"></h3>
+      <table
+        class="table table-bordered table-hover table-responsive-md"
+        id="az-order-table"
+      >
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Product ID</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Price (in Taka)</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Subtotal (in Taka)</th>
+            <th scope="col">Transaction ID</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div class="az-total-price my-3">
+        <h4 class="text-center">Total Price: 0</h4>
+      </div>
+      <div class="az-order-bottom text-center">
+        <button
+          type="button"
+          class="btn btn-lg az-btn-primary w-25"
+          id="az-order-btn"
+        >
+          Complete Order
+        </button>
+        <div class="az-order-instruct py-2 mt-2">
+          <h5 class="text-primary">
+            Please follow the instructions before placing orders
+          </h5>
+          <button class="btn btn-secondary" type="button">
+            Show Instructions
+          </button>
+        </div>
+      </div>
+      <div class="az-order-bottom2 text-center">
+        <a href="/" class="btn btn-primary">
+          <i class="fa fa-home"></i> Go Homepage
+        </a>
+      </div>
+    </div>
+    <span class="az-hr"></span>
+    <div class="col-12 az-order-pay">
+      <div class="az-pay w-50 mx-auto">
+        <h5 class="az-section-title"><i class="fa fa-money"></i> Pay with:</h5>
+        <div class="az-pay-modals">
+          <!-- bkash modal trigger -->
+          <a
+            title="Bkash"
+            type="button"
+            data-toggle="modal"
+            data-target="#bkashModal"
+          >
+            <img
+              src="/icons/bkash.png"
+              alt="bKash"
+              class="img-fluid az-pay-img"
+            />
+          </a>
+          <!-- rocket modal trigger -->
+          <a
+            title="Rocket"
+            type="button"
+            data-toggle="modal"
+            data-target="#rocketModal"
+          >
+            <img
+              src="/icons/rocket.png"
+              alt="Rocket"
+              class="img-fluid az-pay-img"
+            />
+          </a>
+
+          <!-- Scrollable modal -->
+          <div class="modal fade" id="bkashModal">
+            <div class="modal-dialog modal-dialog-scrollable">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">
+                    Pay with bKash
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">...</div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="button" class="btn btn-primary">Done</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Scrollable modal -->
+          <div class="modal fade" id="rocketModal">
+            <div class="modal-dialog modal-dialog-scrollable">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">
+                    Pay with Rocket
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">...</div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="button" class="btn btn-primary">Done</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="az-pay-bank">
+          <h5 class="text-center">Or</h5>
+          <h5 class="az-section-title">Bank Fund Tranfer</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- script -->
+<script src="/javascripts/order.js"></script>
+<!-- footer -->
+<%- include('../layout/footer',{route:'order'}) %>

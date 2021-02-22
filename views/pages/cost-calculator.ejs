@@ -1,0 +1,134 @@
+<!-- header -->
+<%- include('../layout/header',{route:'calculator'}) %>
+<!-- navbar -->
+<%- include('../partials/navbar') %>
+<!-- nav bottom -->
+<%- include('../partials/navbottom') -%>
+<!-- cost calculator  -->
+<section id="az-cost-calculator" class="az-mt mb-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 py-3">
+        <h4 class="az-section-title">Cost Calculator</h4>
+        <span class="az-hr"></span>
+        <div class="az-calculator card card-body az-shadow">
+          <div class="form-row">
+            <div class="col-8">
+              <label for="calc-price">Product Price</label>
+              <input
+                type="number"
+                id="calc-price"
+                class="form-control"
+                placeholder="price"
+                required
+              />
+            </div>
+            <div class="col-4">
+              <label for="calc-currency">Currency</label>
+              <select class="form-control" id="calc-currency" required>
+                <option>USD</option>
+                <option>CNY</option>
+                <option>BDT</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="calc-category">Categories</label>
+            <select class="form-control" id="calc-category">
+              <option selected>Select category</option>
+              <% let categories = [{"no":1,"category":"Mixed product of different item"},
+              {"no":2,"category":"Clothes (Alltype)"},
+              {"no":3,"category":"Shoes & Accessories (All types)"},
+              {"no":4,"category":"Watches (Alltype)"},
+              {"no":5,"category":"Luggage, Bags & Cases (All types)"},
+              {"no":6,"category":"Sunglass"},
+              {"no":7,"category":"Fashion Accessories"},
+              {"no":8,"category":"Sports & Entertainment (Alltype)"},
+              {"no":9,"category":"Jewelry (Normalproducts)"},
+              {"no":10,"category":"Electrical item (Alltype)"},
+              {"no":11,"category":"Computer and Mobile accessories (without battery) Ex: Headphone, charger cable etc"},
+              {"no":12,"category":"Computer and Mobile accessories (with battery)Ex: Power bank, Mobile battery"},
+              {"no":13,"category":"Children Toys"},
+              {"no":14,"category":"Plastic products (All type)"},
+              {"no":15,"category":"Metal products (Example: Bearing,Gear)"},
+              {"no":16,"category":"Automobile, Vehicles Accessories"},
+              {"no":17,"category":"Machinaries"},
+              {"no":18,"category":"Ceramic& clay products"},
+              {"no":19,"category":"Glass & Crystal products"},
+              {"no":20,"category":"Wood, Bamboo & Board products"},
+              {"no":21,"category":"Paper products"},
+              {"no":22,"category":"Textile & LeatherProduct"},
+              {"no":23,"category":"Lotion and beauty products"},
+              {"no":24,"category":"Construction & Real Estate products"},
+              {"no":25,"category":"Lights & Lighting (All type)"},
+              {"no":26,"category":"Miscellaneous"}] %> 
+              <% for( let item of categories) { %>
+              <option value="<%=item.no%>"><%= item.category -%></option>
+              <% } %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="calc-origin">Origin</label>
+            <select class="form-control" id="calc-origin">
+              <option>China</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="col">
+              <label for="calc-weight">Weight (kg)</label>
+              <input
+                type="number"
+                id="calc-weight"
+                placeholder="enter weight"
+                class="form-control"
+              />
+            </div>
+            <div class="col">
+              <label for="calc-ship">Shipping</label>
+              <select class="form-control" id="calc-shipping">
+                <option>By Air</option>
+                <option>By Ship</option>
+              </select>
+            </div>
+          </div>
+          <button
+            class="btn az-btn-primary mt-3"
+            id="az-calc-btn"
+            type="submit"
+          >
+            Calculate
+          </button>
+        </div>
+      </div>
+      <div class="col-lg-6 py-3">
+        <h4 class="az-section-title">Calculations</h4>
+        <span class="az-hr"></span>
+        <div class="az-calculations card card-body">
+          <table class="table table-bordered mb-0">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Freight Company</th>
+                <th scope="col">Cost</th>
+                <th scope="col">Estimated Shipping</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>XYZ</td>
+                <td>$586</td>
+                <td>7-15 days</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<%- include('../partials/footer') -%>
+<!-- script -->
+<script src="/javascripts/calculator.js"></script>
+<!-- footer -->
+<%- include('../layout/footer',{route:'singleproduct'}) %>

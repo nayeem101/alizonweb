@@ -1,0 +1,70 @@
+<!-- header -->
+<%- include('../layout/header',{route:'sourcing'}) %>
+<!-- navbar -->
+<%- include('../partials/navbar') %>
+<!-- nav bottom -->
+<%- include('../partials/navbottom') -%>
+<!-- main content -->
+<main class="az-mt">
+  <div class="container py-3 px-4">
+    <h4 class="az-section-title">Source Products From Us</h4>
+    <span class="az-hr"></span>
+    <h4 class="az-section-subtitle">
+      If you need product, we can source it. Just fill the form below.
+    </h4>
+
+    <div class="az-source-form az-shadow">
+      <%- include('../partials/message') -%>
+      <form
+        action="/source-product"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="form-group">
+          <label for="az-source-prod">Product Name<span>*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            id="az-source-prod"
+            placeholder="enter product name"
+            name="prod_name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="az-prod-image"
+            >Upload Product Images<span>*</span> (At least one)</label
+          >
+          <input
+            type="file"
+            name="prod_image"
+            class="form-control-file"
+            id="az-prod-image"
+            required
+            multiple
+          />
+        </div>
+        <div class="form-group">
+          <label for="az-prod-desc">Description<span>*</span></label>
+          <textarea
+            class="form-control"
+            name="prod_desc"
+            id="az-prod-desc"
+            value="<%= typeof prod_desc !== 'undefined' ? prod_desc : ''%>"
+            placeholder="ex: Color, Size, Variant etc"
+            required
+            rows="3"
+          ></textarea>
+        </div>
+        <div class="btn-wrapper mx-auto text-center">
+          <button class="btn az-btn-primary w-75" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+<br />
+<!-- footer -->
+<%- include('../partials/footer') -%>
+<!-- footer -->
+<%- include('../layout/footer',{route:'souring'}) %>

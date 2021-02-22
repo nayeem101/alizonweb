@@ -1,0 +1,40 @@
+<div class="az-user-sidebar">
+  <nav class="nav flex-column">
+    <a
+      class="nav-link <%= route==='profile' ? 'active' :''%>"
+      href="/user/profile/<%= user.id %>"
+    >
+      <i class="fa fa-user"></i> My Profile
+    </a>
+    <a
+      class="nav-link <%= route==='orders' ? 'active' :''%>"
+      href="/user/orders/<%= user.id %>"
+    >
+      <i class="fa fa-list-alt"></i> My Orders
+    </a>
+    <a
+      class="nav-link <%= route==='shipments' ? 'active' :''%>"
+      href="/user/shipments/<%= user.id %>"
+    >
+      <i class="fa fa-ship"></i> My Shipments
+    </a>
+    <a
+      class="nav-link <%= route==='sourcing' ? 'active' :''%>"
+      href="/user/source-products/<%= user.id %>"
+    >
+      <i class="fa fa-list"></i> My Source Products
+    </a>
+    <a
+      class="nav-link <%= route==='buyandship' ? 'active' :''%>"
+      href="/user/buy-and-ship/<%= user.id %>"
+    >
+      <i class="fa fa-money"></i> My Buy & Ship
+    </a>
+    <a
+      class="nav-link <%= route==='wishlist' ? 'active' :''%>"
+      href="/user/wishlist/<%= user.id %>"
+    >
+      <i class="fa fa-star"></i> My Wishlist
+    </a>
+  </nav>
+</div>

@@ -1,0 +1,200 @@
+<!-- header -->
+<%- include('../layout/header',{title,route:'shipments'}) -%>
+<!-- navbar -->
+<%- include('../partials/navbar') -%>
+<!-- nav bottom -->
+<%- include('../partials/navbottom') -%>
+
+<!-- main content -->
+<main class="az-mt">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 p-0">
+        <%- include('../partials/user-sidebar',{route:'shipments',user}) -%>
+      </div>
+      <div class="col-md-9 p-0">
+        <div class="mt-3 px-3" style="min-height: 450px">
+          <h5 class="az-section-title">My Shipments</h5>
+          <div class="az-user-shipments">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link"
+                  id="home-tab"
+                  data-toggle="tab"
+                  href="#accepted"
+                  role="tab"
+                  aria-controls="accepted"
+                  aria-selected="true"
+                  >Approved(<%= data.approved.length %> )</a
+                >
+              </li>
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link active"
+                  id="profile-tab"
+                  data-toggle="tab"
+                  href="#pending"
+                  role="tab"
+                  aria-controls="pending"
+                  aria-selected="false"
+                  >Pending(<%= data.pending.length %> )</a
+                >
+              </li>
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link"
+                  id="contact-tab"
+                  data-toggle="tab"
+                  href="#rejected"
+                  role="tab"
+                  aria-controls="contact"
+                  aria-selected="false"
+                  >Rejected(<%= data.rejected.length %> )</a
+                >
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <%#accepted data#%>
+              <div
+                class="tab-pane fade"
+                id="accepted"
+                role="tabpanel"
+                aria-labelledby="accepted-tab"
+              >
+                <% if (data.approved.length > 0) { %>
+                <div class="accordion" id="accordion1">
+                  <% for( let i = 0; i < data.approved.length; i++ ) { let
+                  approved = data.approved[i]; %>
+                  <div class="card">
+                    <div
+                      class="card-header az-ff-kreon"
+                      id="heading<%= i %>"
+                      data-toggle="collapse"
+                      data-target="#collapse<%= i %>"
+                      aria-expanded="true"
+                      aria-controls="collapse<%= i %>"
+                    >
+                      <div class="header d-inline-block">
+                        <h5>
+                          <span class="font-weight-bold">Order ID:</span> <%=
+                          approved.id %>
+                        </h5>
+                        <h5>
+                          <span class="font-weight-bold">Ordered At:</span>
+                          12/02/20
+                        </h5>
+                      </div>
+                      <span class="float-right"
+                        ><i class="fa fa-chevron-down"></i
+                      ></span>
+                    </div>
+
+                    <div
+                      id="collapse<%= i %>"
+                      class="az-ship-item collapse <%= i==0?'show' :''%>"
+                      aria-labelledby="heading<%= i %>"
+                      data-parent="#accordion2"
+                    >
+                      <div class="card-body row">
+                        <div class="col-sm-12 col-md-5">
+                          <div class="az-ship-card">
+                            <h5>Product Description:</h5>
+                            <% for( let imgSrc of approved.imageLinks) { %>
+                            <img
+                              class="img-fluid"
+                              src="/<%= imgSrc %>"
+                              alt="<%= approved.prod_title %>1"
+                            />
+                            <% } %>
+                            <p>
+                              <span>Title:</span> <%= approved.prod_title %>
+                            </p>
+                            <p>
+                              <span>Category:</span> <%= approved.prod_category
+                              %>
+                            </p>
+                            <p>
+                              <span>Description:</span> <%= approved.prod_desc
+                              %>
+                            </p>
+                            <p>
+                              <span>Price:</span> <%= approved.prod_price %>;
+                              <span>Quantity:</span> <%= approved.prod_quantity
+                              %>
+                            </p>
+
+                            <p>
+                              <span>Ship To:</span>
+                              <%= approved.prod_ship_to.toLocaleDateString() %>;
+                              <span>Valid To:</span>
+                              <%= approved.prod_ship_valid.toLocaleDateString()
+                              %>
+                            </p>
+
+                            <p>
+                              <span>Weight:</span> <%= approved.prod_weight %>
+                            </p>
+                            <p>
+                              <span>Ship From:</span> <%= approved.prod_origin
+                              %>; <span>Ship By:</span> <%=
+                              approved.prod_shipping %>
+                            </p>
+                          </div>
+                        </div>
+                        <div class="col-sm-12 col-md-5">
+                          <h5>Warehouse Info</h5>
+                        </div>
+                        <div class="col-sm-12 col-md-2">
+                          <h5>Action</h5>
+                          <button class="btn btn-secondary mt-2">
+                            Cancel Order
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <%}%>
+                </div>
+                <% }else{ %>
+                <div class="p-3 text-center">
+                  <img
+                    src="/icons/empty-cart.svg"
+                    class="img-fluid w-25"
+                    alt="empty"
+                  />
+                  <h4 class="text-secondary text-center">Empty</h4>
+                  <button class="btn az-btn-primary mt-2">Shop Now</button>
+                </div>
+                <% } %>
+              </div>
+              <%#pendind data#%>
+              <div
+                class="tab-pane fade show active"
+                id="pending"
+                role="tabpanel"
+                aria-labelledby="pending-tab"
+              >
+                <%-include('../partials/tabshipment',{data:data.pending}) -%>
+              </div>
+              <%#rejected data#%>
+              <div
+                class="tab-pane fade"
+                id="rejected"
+                role="tabpanel"
+                aria-labelledby="rejected-tab"
+              >
+                <%-include('../partials/tabshipment',{data:data.rejected}) -%>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- bfooter -->
+        <%- include('../partials/footer') -%>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- footer -->
+<%- include('../layout/footer',{route:'shipments'}) -%>

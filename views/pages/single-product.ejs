@@ -1,0 +1,223 @@
+<!-- header -->
+<%- include('../layout/header',{title,route:'singleproduct'}) %>
+<!-- navbar -->
+<%- include('../partials/navbar') %>
+<!-- nav bottom -->
+<%- include('../partials/navbottom') -%>
+<!-- single product  -->
+<section id="single-product">
+  <div class="container pb-3">
+    <div class="az-product-top w-75 mx-auto">
+      <!-- categories btn -->
+      <div class="btn-group">
+        <button
+          type="button"
+          class="btn az-btn-primary dropdown-toggle"
+          data-toggle="dropdown"
+          data-display="static"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Categories
+        </button>
+        <div class="dropdown-menu dropdown-menu-lg-right">
+          <% for( let i=0; i < categories.length; i++ ) {%>
+            <li class="az-categories-list-item dropdown-item">
+              <img
+                src="<%=  categories[i].img %>"
+                alt="<%= categories[i].name %>"
+              />
+              <a
+                href="#!"
+                class="az-categories-link"
+              >
+                <%= categories[i].name %>
+              </a>
+            </li>
+            <% } %>
+        </div>
+      </div>
+      <!-- breadcrumb -->
+      <div class="az-breadcrumb">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Categories</a></li>
+            <li class="breadcrumb-item"><a href="#">Sub Cat</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+              <a href="/products/<%= product.productId %>"
+                ><%= product.title.substring(0,40) %></a
+              >
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+    <!-- main product section -->
+    <div class="az-product-container row">
+      <div class="col-lg-4">
+        <div class="az-product-image-slider">
+          <div class="az-product-image slider-for">
+            <% for(let i=0; i<product.images.length; i++) { %>
+            <div class="az-pd-img-main">
+              <img
+                src="<%= product.images[i] %>"
+                class="img-fluid"
+                alt="<%= product.title.substring(0,15) %>"
+                title="<%= product.title.substring(0,25) %>"
+                loading="lazy"
+              />
+            </div>
+            <% } %>
+          </div>
+          <button type="button" class="az-prod-prev">
+            <i class="fa fa-chevron-left"></i>
+          </button>
+          <button type="button" class="az-prod-next">
+            <i class="fa fa-chevron-right"></i>
+          </button>
+          <div class="az-product-images slider-nav">
+            <% for(let i=0; i<product.images.length; i++) { %>
+            <div class="az-pd-slider-img">
+              <img
+                src="<%= product.images[i] %>"
+                class="img-fluid"
+                alt="<%= product.title.substring(0,15) + i %>"
+                title="<%= product.title.substring(0,25) + i %>"
+                loading="lazy"
+              />
+            </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 px-4">
+        <div class="az-product-details az-card-shadow-lite">
+          <h4 class="az-product-title" data-id="<%= product.productId %>">
+            <%= product.title %>
+          </h4>
+          <hr />
+          <p class="az-product-price" data-price="<%= product.salePrice.max %>">
+            $<%= product.salePrice.min %>-<%= product.salePrice.max %>USD
+            <span class="az-product-price-original">
+              $<%= product.originalPrice.min %> - <%=product.originalPrice.max%>
+            </span>
+          </p>
+          <div class="az-product-variants my-2">
+            <p><%= product.variants.name %> : <span class="az-product-variant"></span></p>
+            <ul class="list-group list-group-horizontal">
+              <% for( let variant of product.variants.values) {%>
+              <li
+                class="az-prod-variant list-group-item"
+                title="<%= variant.name %>"
+              >
+                <img
+                  src="<%= variant.image %>"
+                  alt="<%= variant.name %>"
+                  class="img-fluid"
+                />
+              </li>
+              <% } %>
+            </ul>
+          </div>
+          <div class="az-product-sizes my-2">
+            <p><%= product.sizes.name %>: <span class="az-product-size-main"></span></p>
+            <ul class="list-group list-group-horizontal">
+              <% for( let size of product.sizes.values) {%>
+              <li class="list-group-item az-prod-size"><%= size.name %></li>
+              <% } %>
+            </ul>
+          </div>
+          <div id="az-product-quantity" class="form-inline my-2">
+            <label for="az-quantity-field" class="my-1 mr-2 font-size-14"
+              >Quantity:</label
+            >
+            <button
+              class="btn step"
+              onclick="this.parentNode.querySelector('.az-input-num').stepDown()"
+            >
+              <i class="fa fa-minus"></i>
+            </button>
+            <input
+              type="number"
+              min="1"
+              max="<%= product.totalAvailableQuantity %>"
+              value="0"
+              class="az-input-num"
+              id="az-quantity-field"
+            />
+            <button
+              class="btn step"
+              onclick="this.parentNode.querySelector('.az-input-num').stepUp()"
+            >
+              <i class="fa fa-plus"></i>
+            </button>
+            <p class="mb-0">
+              <span class="az-product-qnt-max">
+                <%= product.totalAvailableQuantity %> </span
+              >items available.
+            </p>
+          </div>
+          <div class="az-product-shipping my-2">
+            <label for="az-shipping">Shipping Method:</label>
+            <select class="custom-select" id="az-shipping">
+              <option selected>Alizon Shipping</option>
+              <option value="shipping-1">ABC</option>
+              <option value="shipping-2">XYZ</option>
+            </select>
+          </div>
+          <button
+            type="button"
+            class="btn az-btn-primary w-50 mt-2"
+            id="az-AddToCart-btn"
+          >
+            <i class="fa fa-shopping-cart"></i>
+            Add to Cart
+          </button>
+        </div>
+      </div>
+      <div class="col-lg-2">
+        <div class="az-product-recommended">
+          <p>Recommended for you</p>
+          <div class="az-prod-recommends">
+            <% for( let i = 0; i <recomended.length; i++ ) { %>
+            <div class="az-prod-recomend">
+              <a href="/products/<%= recomended[i].productId %>">
+                <img src="<%= recomended[i].images[0] %>" 
+                alt="<%= recomended[i].title.substring(0,15) %>"
+                title="<%= recomended[i].title.substring(0,15) %>"
+                class="img-fluid" />
+                <p>$<%= recomended[i].salePrice.min %></p>
+              </a>
+            </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="card card-body mt-lg-3">
+          <h4 class='az-section-title'>Specifications</h4>
+          <table class="table table-bordered">
+            <tbody>
+              <% let lenHalf = parseInt(product.specs.length/2)  %> 
+              <% for( let i = 0; i < lenHalf; i++ ) { %>
+                <tr>
+                  <td><span class='text-secondary'><%= product.specs[i].attrName %></span
+                    >:<span class='font-weight-bold'> <%= product.specs[i].attrValue %></span> </td>
+                  <td><span class='text-secondary'><%= product.specs[i+lenHalf].attrName %></span
+                    >:<span  class='font-weight-bold'> <%= product.specs[i+lenHalf].attrValue %></span> </td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- footer -->
+<%- include('../partials/footer') %>
+<!-- bottom -->
+<%- include('../layout/footer',{route:'singleproduct'}) %>

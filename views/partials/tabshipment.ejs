@@ -1,0 +1,79 @@
+<% if (data.length>0) { %>
+<div class="accordion" id="accordion2">
+  <% for( let i = 0; i < data.length; i++ ) { %>
+  <div class="card">
+    <div
+      class="card-header az-ff-kreon"
+      id="heading<%= i %>"
+      data-toggle="collapse"
+      data-target="#collapse<%= i %>"
+      aria-expanded="true"
+      aria-controls="collapse<%= i %>"
+    >
+      <div class="header d-inline-block">
+        <h5>
+          <span class="font-weight-bold">Order ID:</span> <%= data[i].id %>
+        </h5>
+        <h5>
+          <span class="font-weight-bold">Ordered At:</span>
+          12/02/20
+        </h5>
+      </div>
+      <span class="float-right"><i class="fa fa-chevron-down"></i></span>
+    </div>
+
+    <div
+      id="collapse<%= i %>"
+      class="az-ship-item collapse <%= i==0?'show' :''%>"
+      aria-labelledby="heading<%= i %>"
+      data-parent="#accordion2"
+    >
+      <div class="card-body row">
+        <div class="col-sm-12 col-md-9">
+          <div class="az-ship-card">
+            <h5>Product Description:</h5>
+            <% for( let imgSrc of data[i].imageLinks) { %>
+            <img
+              class="img-fluid"
+              src="/<%= imgSrc %>"
+              alt="<%= data[i].prod_title %>1"
+            />
+            <% } %>
+            <p><span>Title:</span> <%= data[i].prod_title %></p>
+            <p><span>Category:</span> <%= data[i].prod_category %></p>
+            <p><span>Description:</span> <%= data[i].prod_desc %></p>
+            <p>
+              <span>Price:</span> <%= data[i].prod_price %>;
+              <span>Quantity:</span> <%= data[i].prod_quantity %>
+            </p>
+
+            <p>
+              <span>Ship To:</span>
+              <%= data[i].prod_ship_to.toLocaleDateString() %>;
+              <span>Valid To:</span>
+              <%= data[i].prod_ship_valid.toLocaleDateString() %>
+            </p>
+
+            <p><span>Weight:</span> <%= data[i].prod_weight %></p>
+            <p>
+              <span>Ship From:</span> <%= data[i].prod_origin %>;
+              <span>Ship By:</span> <%= data[i].prod_shipping %>
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-3">
+          <h5>Action</h5>
+          <button class="btn btn-secondary mt-2">Cancel Order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% } %>
+</div>
+<% }else{ %>
+<div class="p-3 text-center">
+  <img src="/icons/empty-cart.svg" class="img-fluid w-25" alt="empty" />
+  <h4 class="text-secondary text-center">Empty</h4>
+  <a href="/" class="btn az-btn-primary mt-2">Shop Now</a>
+</div>
+<% } %>
