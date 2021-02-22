@@ -277,7 +277,7 @@
         <% for( let j=0; j <topProducts.length; j++ ) { %>
         <div class="az-sale-product">
           <span class="az-sale2"
-          ><%= 100 - Math.floor((topProducts[j].salePrice.max / topProducts[j].originalPrice.max)*100) %>%</span>
+          ><%= (100 - Math.floor((topProducts[j].salePrice.max / topProducts[j].originalPrice.max)*100))  %>%</span>
           <img
             class="img-fluid"
             style="width:180px"
