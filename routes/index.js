@@ -84,7 +84,7 @@ router.get("/", async (req, res, next) => {
     ];
 
     let topProducts = [
-      await dress[3],
+      await dress[1],
       await shoes[2],
       await watches[1],
       await makeups[3],
