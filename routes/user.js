@@ -1,18 +1,18 @@
 const router = require("express").Router();
-const bcrypt = require("bcrypt");
+/* const bcrypt = require("bcrypt");
 const validator = require("validator");
 
-const passport = require("passport");
+const passport = require("passport"); */
 
 //user model
-const User = require("../models/User");
+/* const User = require("../models/User");
 //shipment model
 const Shipment = require("../models/Shipment");
 // source-product model
 const SourceProduct = require("../models/Sourcing");
 // Buy and Ship model
-const BuyAndShip = require("../models/BuyandShip");
-const { ensureAuth } = require("../config/auth");
+const BuyAndShip = require("../models/BuyandShip"); */
+// const { ensureAuth } = require("../config/auth");
 
 //get - user/login
 router.get("/login", (req, res, next) => {
@@ -21,7 +21,7 @@ router.get("/login", (req, res, next) => {
   else res.redirect("/");
 });
 
-//@GET -- /user/shipments/id
+/* //@GET -- /user/shipments/id
 router.get("/shipments/:id", ensureAuth, async (req, res, next) => {
   try {
     let userId = req.params.id;
@@ -89,7 +89,7 @@ router.get("/buy-and-ship/:id", ensureAuth, async (req, res, next) => {
     console.error(error);
     return next(error);
   }
-});
+}); */
 
 /* //get google logins page
 router.get(
