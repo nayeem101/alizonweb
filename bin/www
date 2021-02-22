@@ -83,6 +83,7 @@ function onListening() {
   if (process.env.NODE_ENV !== "production") {
     console.log(`server started on port: http://localhost:${port}`);
   }
+  console.log("server started");
   var addr = server.address();
   var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
   debug("Listening on " + bind);
