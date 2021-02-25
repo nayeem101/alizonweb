@@ -89,6 +89,7 @@ router.get("/", async (req, res, next) => {
       await watches[1],
       await makeups[3],
       await electronics[3],
+      await dress[3],
     ];
 
     // console.log(topProducts);
